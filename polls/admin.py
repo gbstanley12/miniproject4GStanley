@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import Movie
+from .models import Question
 
-@admin.register(Movie)
-class MovieAdmin(admin.ModelAdmin):
-    list_display = ('title', 'release_date', 'grossing')
+admin.site.register(Question)
