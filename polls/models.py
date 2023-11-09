@@ -1,27 +1,23 @@
 from django.db import models
-import datetime
-from django.utils import timezone
-from django.contrib import admin
+from django.contrib.auth.models import User
 
+class Movie(models.Model):
+    title = models.CharField(max_length=200)
+    release_date = models.DateField()
+    genre = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='movie_images/', blank=True, null=True)  # Optional: for movie poster images
+    poster = models.ImageField(upload_to='posters/')
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
     def __str__(self):
-        return self.question_text
+        return self.title
 
-    @admin.display(
-        boolean=True,
-        ordering="pub_date",
-        description="Published recently?",
-    )
-    def was_published_recently(self):
-        now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+class Review(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    rating = models.PositiveSmallIntegerField(choices=[(i, i) for i in range(1, 6)])  # 1 to 5 rating
+    created_at = models.DateTimeField(auto_now_add=True)
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
     def __str__(self):
-        return self.choice_text
+        return f"{self.user.username}'s review of {self.movie.title}"
