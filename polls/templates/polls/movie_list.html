@@ -5,7 +5,7 @@
 <ul>
     {% for movie in movie_list %}
     <li>
-        <a href="{% url 'reviews:movie_detail' movie.pk %}">{{ movie.title }}</a>
+        <a href="{% url 'polls:movie_detail' movie.pk %}">{{ movie.title }}</a>
     </li>
     {% endfor %}
 </ul>

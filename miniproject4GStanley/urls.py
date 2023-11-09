@@ -6,7 +6,7 @@ from polls import views as polls_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('polls/', include('polls.urls')),
+    path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
     path('', polls_views.home_view, name='home'),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
