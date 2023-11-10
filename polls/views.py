@@ -5,6 +5,21 @@ from django.contrib.auth.decorators import login_required
 from .models import Movie
 from .forms import ReviewForm
 from django.utils import timezone
+from .forms import RegisterForm
+from django.contrib.auth import login
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('polls:movie_list')  # Redirect to a desired page after registration
+    else:
+        form = RegisterForm()
+    return render(request, 'polls/register.html', {'form': form})
+
+
 
 
 class MovieListView(generic.ListView):
@@ -23,6 +38,17 @@ class MovieDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['review_form'] = ReviewForm()
         return context
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('polls:movie_list')  # Redirect to a desired page after registration
+    else:
+        form = RegisterForm()
+    return render(request, 'polls/register.html', {'form': form})
 
 @login_required
 def submit_review(request, movie_id):
