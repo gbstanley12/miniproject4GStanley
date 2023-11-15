@@ -8,13 +8,17 @@ This Django web application allows users to view, add, and review movies. It fea
 
 ## Installation
 Ensure you have Python and Django installed on your system. Then, install the required dependencies:
+
 ```pip install -r requirements```
 
 
 ## Database Initialization
 Run the following commands to set up your database:
+
 ```python manage.py makemigrations``` (this will create any SQL entries that need to go into the database)
+
 ```python manage.py migrate``` (this will apply the migrations)
+
 ```python manage.py createsuperuser``` (this will create the administrator login for your /admin side of your project)
 
 ## Running the Application
