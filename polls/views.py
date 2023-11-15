@@ -37,20 +37,23 @@ class MovieDetailView(generic.DetailView):
         context['review_form'] = ReviewForm()
         return context
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        review_form = ReviewForm(request.POST)
+
+        if review_form.is_valid():
+            new_review = review_form.save(commit=False)
+            new_review.movie = self.object
+            new_review.user = request.user
+            new_review.save()
+            return redirect(reverse('polls:movie_detail', args=(self.object.id,)))
+        else:
+            context['review_form'] = review_form
+            return self.render_to_response(context)
 def home_view(request):
     reviews = Review.objects.order_by('-created_at')[:10]  # Fetch the 10 most recent reviews
     return render(request, 'home.html', {'reviews': reviews})
-
-def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('polls:movie_list')  # Redirect to a desired page after registration
-    else:
-        form = RegisterForm()
-    return render(request, 'polls/register.html', {'form': form})
 
 @login_required
 def submit_review(request, movie_id):
@@ -82,8 +85,6 @@ def add_movie_view(request):
     else:
         form = MovieForm()
     return render(request, 'polls/add_movie.html', {'form': form})
-def recent_reviews(request):
-    reviews = Review.objects.order_by('-created_at')[:10]  # Fetch the 10 most recent reviews
 
 def upcoming_movies_view(request):
     anticipated_movies = [

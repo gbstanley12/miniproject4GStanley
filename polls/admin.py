@@ -12,7 +12,7 @@ class MovieAdmin(admin.ModelAdmin):
     search_fields = ['title', 'director', 'genre']
     list_filter = ['release_date', 'genre']
     fieldsets = [
-        (None, {'fields': ['title', 'release_date', 'genre', 'director', 'image', 'poster']}),
+        (None, {'fields': ['title', 'release_date', 'genre', 'director', 'image']}),
     ]
     inlines = [ReviewInline]
 

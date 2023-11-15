@@ -179,3 +179,11 @@ footer p {
 .registration-form a:hover {
     text-decoration: underline;
 }
+
+.fa-star {
+    color: #ccc; /* Color for unfilled stars */
+}
+
+.fa-star.checked {
+    color: gold; /* Color for filled stars */
+}

@@ -6,8 +6,7 @@ class Movie(models.Model):
     release_date = models.DateField()
     genre = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='movie_images/', blank=True, null=True)  # Optional: for movie poster images
-    poster = models.ImageField(upload_to='posters/')
+    image = models.ImageField(upload_to='movie_images/', blank=True, null=True)
 
     def __str__(self):
         return self.title

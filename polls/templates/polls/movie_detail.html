@@ -6,9 +6,9 @@
 <h2>Review</h2>
 <!-- Display reviews here -->
 <!-- Include review form -->
-<form method="post">
+<form method="post" action="">
     {% csrf_token %}
     {{ review_form.as_p }}
-    <button type="submit">Submit Review</button>
+    <button type="submit" class="btn btn-primary">Submit Review</button>
 </form>
 {% endblock %}

@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
+{% load custom_tags %}
+
 {% block content %}
 <div class="container mt-4">
     <h1>Recent Reviews</h1>
     <ul class="list-group">
         {% for review in reviews %}
             <li class="list-group-item review-box">
+                {% if review.movie.image %}
+                    <img src="{{ review.movie.image.url }}" alt="{{ review.movie.title }}" style="max-width: 100px; height: auto;">
+                {% endif %}
                 <strong>{{ review.movie.title }}</strong> by {{ review.user.username }} ({{ review.created_at }})
                 <p>{{ review.text }}</p>
+                <div class="review-rating">
+                    {% for star in review.rating|star_range %}
+                        <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    {% for star in 5|star_range %}
+                        {% if forloop.counter > review.rating %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </li>
         {% empty %}
             <li class="list-group-item review-box">No recent reviews.</li>
