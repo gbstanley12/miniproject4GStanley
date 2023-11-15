@@ -57,22 +57,40 @@ footer p {
     font-size: 1rem;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 30px;
-    }
-
-    .hero h1 {
-        font-size: 3rem;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-    }
+/* Review Styles */
+.review-box {
+    background-color: #333; /* Dark background for the review box */
+    color: #f1f1f1; /* Light color for the text */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
-/* style.css */
+.review-box strong {
+    color: #b11226; /* Highlight the movie title or important text */
+}
+
+.review-box p {
+    color: #f1f1f1; /* Light color for the review text */
+}
+
+/* Adjustments to existing styles */
+.anticipated-movies .movie p {
+    color: #f1f1f1; /* Ensure consistency in text color */
+}
+
+/* Ensure the registration form retains its styling */
+.registration-form {
+    background-color: #fff;
+    color: #333; /* Dark text for readability */
+}
+
+.registration-form h2,
+.registration-form label,
+.registration-form p,
+.registration-form a {
+    color: #333; /* Dark text for readability */
+}
 
 .anticipated-movies .movie {
     border: 1px solid #ddd;

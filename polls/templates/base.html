@@ -11,27 +11,34 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="{% url 'home' %}">Movie Reviews</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'polls:login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'polls:register' %}">Register</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+    <a class="navbar-brand" href="{% url 'home' %}">Movie Reviews</a>
+        <li class="nav-item">
+            <a href="{% url 'polls:movie_list' %}">Create Review</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'polls:upcoming_movies' %}">Upcoming Movies</a>
+        </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'polls:logout' %}">Sign Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'polls:login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'polls:register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
     </nav>
+
 
     <div class="container">
         {% block content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<h2>Biggest Upcoming Movies</h2>
+<div class="anticipated-movies">
+    {% for movie in anticipated_movies %}
+    <div class="movie">
+        <img class="movie-image" src="{% static movie.image %}" alt="{{ movie.title }}">
+        <h3>{{ movie.title }}</h3>
+        <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        <p>{{ movie.summary }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
