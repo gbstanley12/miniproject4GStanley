@@ -30,6 +30,3 @@ Navigate to `http://127.0.0.1:8000/` in your web browser to view the application
 - Movie Details with Image Uploads
 - Review Submission with Star Ratings
 - Admin Panel for Movie and Review Management
-
-## Contributing
-Feel free to fork this repository and submit pull requests for any improvements or fixes.
